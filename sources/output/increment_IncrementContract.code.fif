@@ -1,0 +1,622 @@
+PROGRAM{
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_store_address
+  DECLPROC __tact_dict_set_int_int
+  DECLPROC __tact_dict_get_int_int
+  DECLPROC __tact_dict_set_int_cell
+  DECLPROC __tact_dict_get_int_cell
+  DECLPROC __tact_dict_set_slice_int
+  DECLPROC __gen_read_Deploy
+  DECLPROC __gen_write_DeployOk
+  DECLPROC __gen_writecell_DeployOk
+  DECLPROC __gen_read_Increment
+  DECLPROC __gen_read_Toggle
+  DECLPROC __gen_read_Persist
+  DECLPROC __gen_read_Reset
+  DECLPROC __gen_write_Something
+  DECLPROC __gen_writecell_Something
+  DECLPROC __gen_Something_not_null
+  DECLPROC __gen_writecellopt_Something
+  DECLPROC __gen_write_IncrementContract
+  DECLPROC __gen_read_IncrementContract
+  DECLPROC __gen_Context_get_sender
+  DECLPROC __gen_load_IncrementContract
+  DECLPROC __gen_store_IncrementContract
+  DECLPROC $send
+  DECLPROC $reply
+  DECLPROC $__gen_IncrementContract_counters
+  95239 DECLMETHOD $__gen_get_counters
+  DECLPROC $__gen_IncrementContract_counters2
+  77570 DECLMETHOD $__gen_get_counters2
+  DECLPROC $__gen_IncrementContract_receive_Increment
+  DECLPROC $__gen_IncrementContract_receive_Toggle
+  DECLPROC $__gen_IncrementContract_receive_Persist
+  DECLPROC $__gen_IncrementContract_receive_Reset
+  DECLPROC $__gen_IncrementContract_receive_Deploy
+  DECLPROC recv_internal
+  113617 DECLMETHOD supported_interfaces
+  DECLPROC get_abi_ipfs
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sys
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_verify_address PROCINLINE:<{
+    SBITS
+    267 PUSHINT
+    NEQ
+    136 THROWIFNOT
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_store_address PROCINLINE:<{
+    STSLICER
+  }>
+  __tact_dict_set_int_int PROCINLINE:<{
+    OVER
+    ISNULL
+    IF:<{
+      2DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      NEWC
+      SWAP
+      STIX
+      s1 s3 s3 XCHG3
+      DICTISETB
+    }>
+  }>
+  __tact_dict_get_int_int PROCINLINE:<{
+    s1 s3 s3 XCHG3
+    DICTIGET
+    NULLSWAPIFNOT
+    IF:<{
+      SWAP
+      LDIX
+      DROP
+    }>ELSE<{
+      2DROP
+      PUSHNULL
+    }>
+  }>
+  __tact_dict_set_int_cell PROCINLINE:<{
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      -ROT
+      DICTIDEL
+      DROP
+    }>ELSE<{
+      s1 s3 s3 XCHG3
+      DICTISETREF
+    }>
+  }>
+  __tact_dict_get_int_cell PROC:<{
+    -ROT
+    DICTIGETREF
+    NULLSWAPIFNOT
+    IFJMP:<{
+    }>
+    DROP
+    PUSHNULL
+  }>
+  __tact_dict_set_slice_int PROC:<{
+    OVER
+    ISNULL
+    IFJMP:<{
+      2DROP
+      -ROT
+      DICTDEL
+      DROP
+    }>
+    NEWC
+    SWAP
+    STIX
+    s1 s3 s3 XCHG3
+    DICTSETB
+  }>
+  __gen_read_Deploy PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  __gen_write_DeployOk PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  __gen_writecell_DeployOk PROCREF:<{
+    NEWC
+    SWAP
+    __gen_write_DeployOk INLINECALLDICT
+    ENDC
+  }>
+  __gen_read_Increment PROCINLINE:<{
+    32 LDU
+    SWAP
+    537284411 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    -ROT
+  }>
+  __gen_read_Toggle PROCINLINE:<{
+    32 LDU
+    SWAP
+    1081595080 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  __gen_read_Persist PROCINLINE:<{
+    32 LDU
+    SWAP
+    3801943978 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    1 LDI
+    SWAP
+    IF:<{
+      LDREF
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    -ROT
+  }>
+  __gen_read_Reset PROCINLINE:<{
+    32 LDU
+    SWAP
+    1718153138 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    SWAP
+  }>
+  __gen_write_Something PROCINLINE:<{
+    SWAP
+    257 PUSHINT
+    STIX
+  }>
+  __gen_writecell_Something PROCREF:<{
+    NEWC
+    SWAP
+    __gen_write_Something INLINECALLDICT
+    ENDC
+  }>
+  __gen_Something_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+    1 UNTUPLE
+  }>
+  __gen_writecellopt_Something PROCREF:<{
+    DUP
+    ISNULL
+    IFJMP:<{
+      DROP
+      PUSHNULL
+    }>
+    __gen_Something_not_null INLINECALLDICT
+    __gen_writecell_Something INLINECALLDICT
+  }>
+  __gen_write_IncrementContract PROCINLINE:<{
+    s4 s5 XCHG2
+    STDICT
+    s1 s2 XCHG
+    STDICT
+    SWAP
+    NEWC
+    STDICT
+    s1 s2 XCHG
+    STDICT
+    s1 s2 XCHG
+    STDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  __gen_read_IncrementContract PROCINLINE:<{
+    LDDICT
+    LDDICT
+    LDREF
+    SWAP
+    CTOS
+    LDDICT
+    LDDICT
+    LDDICT
+    DROP
+    s3 s5 XCHG
+    s3 s4 XCHG
+  }>
+  __gen_Context_get_sender PROCINLINE:<{
+    s2 s3 XCHG
+    3 BLKDROP
+  }>
+  __gen_load_IncrementContract PROCINLINE:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    __gen_read_IncrementContract INLINECALLDICT
+    1 5 BLKDROP2
+  }>
+  __gen_store_IncrementContract PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    5 -ROLL
+    __gen_write_IncrementContract INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $send PROCREF:<{
+    NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+    STGRAMS
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    s5 PUSH
+    ISNULL
+    NOT
+    OR
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+        STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      ENDC
+      ROT
+      STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+      STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    ENDC
+    SWAP
+    SENDRAWMSG
+  }>
+  $reply PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    TRUE
+    s0 s2 XCHG
+    0 PUSHINT
+    66 PUSHINT
+    ROT
+    PUSHNULL
+    PUSHNULL
+    $send INLINECALLDICT
+  }>
+  $__gen_IncrementContract_counters PROCREF:<{
+    4 BLKDROP
+  }>
+  $__gen_get_counters PROC:<{
+    __gen_load_IncrementContract INLINECALLDICT
+    $__gen_IncrementContract_counters INLINECALLDICT
+  }>
+  $__gen_IncrementContract_counters2 PROCREF:<{
+    s1 s4 XCHG
+    4 BLKDROP
+  }>
+  $__gen_get_counters2 PROC:<{
+    __gen_load_IncrementContract INLINECALLDICT
+    $__gen_IncrementContract_counters2 INLINECALLDICT
+  }>
+  $__gen_IncrementContract_receive_Increment PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    s2 s3 XCHG
+    3 BLKDROP
+    257 PUSHINT
+    DUP
+    s3 s9 XCHG
+    s1 s4 s0 XCHG3
+    s9 s(-1) PUXC
+    __tact_dict_set_int_int INLINECALLDICT
+    s2 s3 XCHG
+    267 PUSHINT
+    s0 s0 s7 XCHG3
+    257 PUSHINT
+    __tact_dict_set_slice_int CALLDICT
+    SWAP
+  }>
+  $__gen_IncrementContract_receive_Toggle PROCINLINE:<{
+    s4 PUSH
+    257 PUSHINT
+    s2 PUSH
+    1 PUSHINT
+    __tact_dict_get_int_int INLINECALLDICT
+    DUP
+    ISNULL
+    IF:<{
+      DROP
+      s1 s4 XCHG
+      257 PUSHINT
+      SWAP
+      TRUE
+      1 PUSHINT
+      __tact_dict_set_int_int INLINECALLDICT
+    }>ELSE<{
+      257 PUSHINT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      NOT
+      s3 s6 XCHG
+      s1 s2 XCHG
+      1 PUSHINT
+      __tact_dict_set_int_int INLINECALLDICT
+    }>
+    s0 s3 XCHG
+  }>
+  $__gen_IncrementContract_receive_Persist PROCINLINE:<{
+    52777 PUSHINT
+    s5 PUSH
+    257 PUSHINT
+    s4 PUSH
+    __tact_dict_get_int_cell CALLDICT
+    ISNULL
+    THROWANYIFNOT
+    s2 s4 XCHG
+    257 PUSHINT
+    -ROT
+    __tact_dict_set_int_cell INLINECALLDICT
+    s0 s2 XCHG
+  }>
+  $__gen_IncrementContract_receive_Reset PROCINLINE:<{
+    257 PUSHINT
+    PUSHNULL
+    s1 s2 PUSH2
+    s4 s9 XCHG
+    -ROT
+    __tact_dict_set_int_int INLINECALLDICT
+    s0 s4 XCHG
+    257 PUSHINT
+    s6 PUSH
+    PUSHNULL
+    1 PUSHINT
+    __tact_dict_set_int_int INLINECALLDICT
+    s0 s3 XCHG
+    257 PUSHINT
+    s6 PUSH
+    PUSHNULL
+    __tact_dict_set_int_cell INLINECALLDICT
+    267 PUSHINT
+    __tact_context_get INLINECALLDICT
+    __gen_Context_get_sender INLINECALLDICT
+    s2 s4 XCHG
+    PUSHNULL
+    257 PUSHINT
+    __tact_dict_set_slice_int CALLDICT
+    257 PUSHINT
+    PUSHNULL
+    __gen_writecellopt_Something INLINECALLDICT
+    s1 s7 s0 XCHG3
+    __tact_dict_set_int_cell INLINECALLDICT
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $__gen_IncrementContract_receive_Deploy PROCINLINE:<{
+    __gen_writecell_DeployOk INLINECALLDICT
+    $reply INLINECALLDICT
+  }>
+  recv_internal PROC:<{
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    s0 s2 XCHG
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    1 EQINT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      FALSE
+    }>
+    SWAP
+    LDMSGADDR
+    s2 PUSH
+    s6 s6 XCHG2
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    IFJMP:<{
+      2DROP
+    }>
+    DUP
+    537284411 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      __gen_load_IncrementContract INLINECALLDICT
+      s0 s5 XCHG
+      __gen_read_Increment INLINECALLDICT
+      s2 POP
+      s5 s6 XCHG
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s3 s0 s0 XCHG3
+      $__gen_IncrementContract_receive_Increment INLINECALLDICT
+      __gen_store_IncrementContract INLINECALLDICT
+    }>
+    DUP
+    1081595080 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      __gen_load_IncrementContract INLINECALLDICT
+      s0 s5 XCHG
+      __gen_read_Toggle INLINECALLDICT
+      NIP
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3
+      $__gen_IncrementContract_receive_Toggle INLINECALLDICT
+      __gen_store_IncrementContract INLINECALLDICT
+    }>
+    DUP
+    3801943978 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      __gen_load_IncrementContract INLINECALLDICT
+      s0 s5 XCHG
+      __gen_read_Persist INLINECALLDICT
+      s2 POP
+      s5 s6 XCHG
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s3 s0 s0 XCHG3
+      $__gen_IncrementContract_receive_Persist INLINECALLDICT
+      __gen_store_IncrementContract INLINECALLDICT
+    }>
+    DUP
+    1718153138 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      __gen_load_IncrementContract INLINECALLDICT
+      s0 s5 XCHG
+      __gen_read_Reset INLINECALLDICT
+      NIP
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3
+      $__gen_IncrementContract_receive_Reset INLINECALLDICT
+      __gen_store_IncrementContract INLINECALLDICT
+    }>
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      __gen_load_IncrementContract INLINECALLDICT
+      s0 s5 XCHG
+      __gen_read_Deploy INLINECALLDICT
+      NIP
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3
+      $__gen_IncrementContract_receive_Deploy INLINECALLDICT
+      __gen_store_IncrementContract INLINECALLDICT
+    }>
+    DROP
+    130 THROW
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d5a71623779626859324a51554246364d634761526742746a793657487a33454e487a5452734c533133716b32} PUSHSLICE
+  }>
+}END>c

@@ -1,7 +1,7 @@
 {
     "projects": [{
-        "name": "sample",
-        "path": "./sources/contract.tact",
+        "name": "increment",
+        "path": "./sources/contract/increment.tact",
         "output": "./sources/output"
     }]
 }

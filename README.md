@@ -21,7 +21,7 @@ To launch your own contract you should:
 {
 "projects": [{
     "name": "sample",
-    "path": "./sources/contract.tact",
+    "path": "./sources/sample.tact",
     "output": "./sources/output"
 }]
 }
@@ -34,6 +34,27 @@ In this way you can use template project to play with Tact smart contract exampl
 
 [Tact documentation.](https://github.com/ton-community/tact/blob/main/docs/overview.md)
 
-## Licence
 
-MIT
+## Run Script
+
+Test
+```bash
+ts-node ./scripts/try.ts
+```
+
+### Contract
+
+Build
+```bash
+ts-node ./scripts/try.ts
+```
+
+Deploy
+```bash
+ts-node ./scripts/deploy.ts
+```
+
+Test
+```bash
+ts-node ./scripts/try.ts
+```

@@ -1,8 +1,8 @@
 import { beginCell, contractAddress, toNano } from "ton";
 import { testAddress } from "ton-emulator";
-import { SampleTactContract, storeAdd } from "./output/sample_SampleTactContract";
-import { deploy } from "./utils/deploy";
-import { printAddress, printDeploy, printHeader } from "./utils/print";
+import { SampleTactContract, storeAdd } from "../output/sample_SampleTactContract";
+import { deploy } from "../utils/deploy";
+import { printAddress, printDeploy, printHeader } from "../utils/print";
 
 (async () => {
 

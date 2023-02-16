@@ -1,0 +1,136 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __gen_write_Counter1
+  DECLPROC __gen_read_Counter1
+  DECLPROC __gen_load_Counter1
+  DECLPROC __gen_store_Counter1
+  DECLPROC $__gen_Counter1_counter
+  104984 DECLMETHOD $__gen_get_counter
+  DECLPROC $__gen_Counter1_owner
+  83229 DECLMETHOD $__gen_get_owner
+  DECLPROC $__gen_Counter1_receive_comment_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae
+  DECLPROC recv_internal
+  113617 DECLMETHOD supported_interfaces
+  DECLPROC get_abi_ipfs
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sys
+  __tact_verify_address PROCINLINE:<{
+    SBITS
+    267 PUSHINT
+    NEQ
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+  }>
+  __tact_store_address PROCINLINE:<{
+    STSLICER
+  }>
+  __gen_write_Counter1 PROCINLINE:<{
+    -ROT
+    __tact_store_address INLINECALLDICT
+    32 STU
+  }>
+  __gen_read_Counter1 PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    32 LDU
+    -ROT
+  }>
+  __gen_load_Counter1 PROCINLINE:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    __gen_read_Counter1 INLINECALLDICT
+    1 2 BLKDROP2
+  }>
+  __gen_store_Counter1 PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    -ROT
+    __gen_write_Counter1 INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $__gen_Counter1_counter PROCREF:<{
+    NIP
+  }>
+  $__gen_get_counter PROC:<{
+    __gen_load_Counter1 INLINECALLDICT
+    $__gen_Counter1_counter INLINECALLDICT
+  }>
+  $__gen_Counter1_owner PROCREF:<{
+    DROP
+  }>
+  $__gen_get_owner PROC:<{
+    __gen_load_Counter1 INLINECALLDICT
+    $__gen_Counter1_owner INLINECALLDICT
+  }>
+  $__gen_Counter1_receive_comment_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae PROCINLINE:<{
+    INC
+  }>
+  recv_internal PROC:<{
+    c2 SAVE
+    SAMEALTSAVE
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    s0 s2 XCHG
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    1 EQINT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      FALSE
+    }>
+    SWAP
+    LDMSGADDR
+    s2 PUSH
+    s6 s6 XCHG2
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    IFJMP:<{
+      2DROP
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      89092981215441470209245890604563109773385607357076622359718516871332286001838 PUSHINT
+      EQUAL
+      IFJMP:<{
+        __gen_load_Counter1 INLINECALLDICT
+        $__gen_Counter1_receive_comment_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae INLINECALLDICT
+        __gen_store_Counter1 INLINECALLDICT
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    130 THROW
+  }>
+  supported_interfaces PROC:<{
+    123515602279859691144772641439386770278 PUSHINT
+    209801025412363888721030803524359905849 PUSHINT
+  }>
+  get_abi_ipfs PROC:<{
+    x{697066733a2f2f516d5342316175366f625767754b6f473276746b7732646471384d7136577961706d6f38734b554e4d3938345673} PUSHSLICE
+  }>
+}END>c
